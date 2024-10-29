@@ -1,7 +1,7 @@
 .wave {
   position: fixed;
   height: 100%;
-  width: 80%;
+  width: 100%;
   left: 0;
   bottom: 0;
   z-index: -1;
@@ -19,12 +19,14 @@
 
 .img {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  margin: 58px 0 0 72px;
 }
 
 .img img {
   width: 500px;
+}
+
+.img-login {
 }
 
 .login-box {

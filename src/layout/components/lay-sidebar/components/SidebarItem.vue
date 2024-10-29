@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import path from "path";
-import { getConfig } from "@/config";
-import { menuType } from "@/layout/types";
-import { ReText } from "@/components/ReText";
-import { useNav } from "@/layout/hooks/useNav";
-import SidebarLinkItem from "./SidebarLinkItem.vue";
-import SidebarExtraIcon from "./SidebarExtraIcon.vue";
-import { useRenderIcon } from "@/components/ReIcon/src/hooks";
+import path from 'path';
+import { getConfig } from '@/config';
+import { menuType } from '@/layout/types';
+import { ReText } from '@/components/ReText';
+import { useNav } from '@/layout/hooks/useNav';
+import SidebarLinkItem from './SidebarLinkItem.vue';
+import SidebarExtraIcon from './SidebarExtraIcon.vue';
+import { useRenderIcon } from '@/components/ReIcon/src/hooks';
 import {
   type PropType,
   type CSSProperties,
@@ -14,12 +14,12 @@ import {
   toRaw,
   computed,
   useAttrs
-} from "vue";
+} from 'vue';
 
-import ArrowUp from "@iconify-icons/ep/arrow-up-bold";
-import EpArrowDown from "@iconify-icons/ep/arrow-down-bold";
-import ArrowLeft from "@iconify-icons/ep/arrow-left-bold";
-import ArrowRight from "@iconify-icons/ep/arrow-right-bold";
+import ArrowUp from '@iconify-icons/ep/arrow-up-bold';
+import EpArrowDown from '@iconify-icons/ep/arrow-down-bold';
+import ArrowLeft from '@iconify-icons/ep/arrow-left-bold';
+import ArrowRight from '@iconify-icons/ep/arrow-right-bold';
 
 const attrs = useAttrs();
 const { layout, isCollapse, tooltipEffect, getDivStyle } = useNav();
@@ -34,39 +34,39 @@ const props = defineProps({
   },
   basePath: {
     type: String,
-    default: ""
+    default: ''
   }
 });
 
 const getNoDropdownStyle = computed((): CSSProperties => {
   return {
-    width: "100%",
-    display: "flex",
-    alignItems: "center"
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center'
   };
 });
 
 const getSubMenuIconStyle = computed((): CSSProperties => {
   return {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     margin:
-      layout.value === "horizontal"
-        ? "0 5px 0 0"
+      layout.value === 'horizontal'
+        ? '0 5px 0 0'
         : isCollapse.value
-          ? "0 auto"
-          : "0 5px 0 0"
+          ? '0 auto'
+          : '0 5px 0 0'
   };
 });
 
 const expandCloseIcon = computed(() => {
-  if (!getConfig()?.MenuArrowIconNoTransition) return "";
+  if (!getConfig()?.MenuArrowIconNoTransition) return '';
   return {
-    "expand-close-icon": useRenderIcon(EpArrowDown),
-    "expand-open-icon": useRenderIcon(ArrowUp),
-    "collapse-close-icon": useRenderIcon(ArrowRight),
-    "collapse-open-icon": useRenderIcon(ArrowLeft)
+    'expand-close-icon': useRenderIcon(EpArrowDown),
+    'expand-open-icon': useRenderIcon(ArrowUp),
+    'collapse-close-icon': useRenderIcon(ArrowRight),
+    'collapse-open-icon': useRenderIcon(ArrowLeft)
   };
 });
 
@@ -87,7 +87,7 @@ function hasOneShowingChild(children: menuType[] = [], parent: menuType) {
   }
 
   if (showingChildren.length === 0) {
-    onlyOneChild.value = { ...parent, path: "", noShowingChildren: true };
+    onlyOneChild.value = { ...parent, path: '', noShowingChildren: true };
     return true;
   }
   return false;

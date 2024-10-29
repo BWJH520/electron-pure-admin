@@ -2,7 +2,7 @@
 {
   $schema: "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   appId: "com.pure.electron",
-  productName: "electron-pure-admin",
+  productName: "zhefu-visual-admin",
   copyright: "Copyright © 2020-present, pure-admin",
   publish: {
     provider: "github",
