@@ -1,22 +1,22 @@
-import { cdn } from "./cdn";
-import vue from "@vitejs/plugin-vue";
-import { pathResolve } from "./utils";
-import { viteBuildInfo } from "./info";
-import svgLoader from "vite-svg-loader";
-import type { PluginOption } from "vite";
-import checker from "vite-plugin-checker";
-import vueJsx from "@vitejs/plugin-vue-jsx";
-import electron from "vite-plugin-electron";
-import Inspector from "vite-plugin-vue-inspector";
-import { configCompressPlugin } from "./compress";
-import removeNoMatch from "vite-plugin-router-warn";
-import renderer from "vite-plugin-electron-renderer";
-import { visualizer } from "rollup-plugin-visualizer";
-import removeConsole from "vite-plugin-remove-console";
-import { themePreprocessorPlugin } from "@pureadmin/theme";
-import { genScssMultipleScopeVars } from "../src/layout/theme";
-import { vitePluginFakeServer } from "vite-plugin-fake-server";
-import pkg from "../package.json";
+import { cdn } from './cdn';
+import vue from '@vitejs/plugin-vue';
+import { pathResolve } from './utils';
+import { viteBuildInfo } from './info';
+import svgLoader from 'vite-svg-loader';
+import type { PluginOption } from 'vite';
+import checker from 'vite-plugin-checker';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import electron from 'vite-plugin-electron';
+import Inspector from 'vite-plugin-vue-inspector';
+import { configCompressPlugin } from './compress';
+import removeNoMatch from 'vite-plugin-router-warn';
+import renderer from 'vite-plugin-electron-renderer';
+import { visualizer } from 'rollup-plugin-visualizer';
+import removeConsole from 'vite-plugin-remove-console';
+import { themePreprocessorPlugin } from '@pureadmin/theme';
+import { genScssMultipleScopeVars } from '../src/layout/theme';
+import { vitePluginFakeServer } from 'vite-plugin-fake-server';
+import pkg from '../package.json';
 
 export function getPluginsList(
   command: string,
@@ -24,8 +24,8 @@ export function getPluginsList(
   VITE_COMPRESSION: ViteCompression
 ): PluginOption[] {
   const prodMock = true;
-  const isServe = command === "serve";
-  const isBuild = command === "build";
+  const isServe = command === 'serve';
+  const isBuild = command === 'build';
   const lifecycle = process.env.npm_lifecycle_event;
   const sourcemap = isServe || !!process.env.VSCODE_DEBUG;
   return [
@@ -36,7 +36,7 @@ export function getPluginsList(
       typescript: true,
       vueTsc: true,
       eslint: {
-        lintCommand: `eslint ${pathResolve("../{src,mock,build}/**/*.{vue,js,ts,tsx}")}`,
+        lintCommand: `eslint ${pathResolve('../{src,mock,build}/**/*.{vue,js,ts,tsx}')}`,
         useFlatConfig: true
       },
       terminal: false,
@@ -54,9 +54,9 @@ export function getPluginsList(
     // mock支持
     vitePluginFakeServer({
       logger: false,
-      include: "mock",
+      include: 'mock',
       infixName: false,
-      enableProd: command !== "serve" && prodMock
+      enableProd: command !== 'serve' && prodMock
     }),
     // 自定义主题
     themePreprocessorPlugin({
@@ -70,22 +70,22 @@ export function getPluginsList(
     VITE_CDN ? cdn : null,
     configCompressPlugin(VITE_COMPRESSION),
     // 线上环境删除console
-    removeConsole({ external: ["src/assets/iconfont/iconfont.js"] }),
+    removeConsole({ external: ['src/assets/iconfont/iconfont.js'] }),
     // 打包分析
-    lifecycle === "report"
-      ? visualizer({ open: true, brotliSize: true, filename: "report.html" })
+    lifecycle === 'report'
+      ? visualizer({ open: true, brotliSize: true, filename: 'report.html' })
       : (null as any),
-    !lifecycle.includes("browser")
+    !lifecycle.includes('browser')
       ? [
           // 支持electron
           electron([
             {
               // Main-Process entry file of the Electron App.
-              entry: "electron/main/index.ts",
+              entry: 'electron/main/index.ts',
               onstart(options) {
                 if (process.env.VSCODE_DEBUG) {
                   console.log(
-                    /* For `.vscode/.debug.script.mjs` */ "[startup] Electron App"
+                    /* For `.vscode/.debug.script.mjs` */ '[startup] Electron App'
                   );
                 } else {
                   options.startup();
@@ -95,17 +95,17 @@ export function getPluginsList(
                 build: {
                   sourcemap,
                   minify: isBuild,
-                  outDir: "dist-electron/main",
+                  outDir: 'dist-electron/main',
                   rollupOptions: {
                     external: Object.keys(
-                      "dependencies" in pkg ? pkg.dependencies : {}
+                      'dependencies' in pkg ? pkg.dependencies : {}
                     )
                   }
                 }
               }
             },
             {
-              entry: "electron/preload/index.ts",
+              entry: 'electron/preload/index.ts',
               onstart(options) {
                 // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
                 // instead of restarting the entire Electron App.
@@ -113,12 +113,12 @@ export function getPluginsList(
               },
               vite: {
                 build: {
-                  sourcemap: sourcemap ? "inline" : undefined, // #332
+                  sourcemap: sourcemap ? 'inline' : undefined, // #332
                   minify: isBuild,
-                  outDir: "dist-electron/preload",
+                  outDir: 'dist-electron/preload',
                   rollupOptions: {
                     external: Object.keys(
-                      "dependencies" in pkg ? pkg.dependencies : {}
+                      'dependencies' in pkg ? pkg.dependencies : {}
                     )
                   }
                 }
