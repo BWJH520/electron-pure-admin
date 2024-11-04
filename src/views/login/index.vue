@@ -95,65 +95,65 @@ onBeforeUnmount(() => {
         <component :is="toRaw(illustration)" />
       </div>
       <div class="login-box">
-        <div class="login-form">
-          <div class="img-login">
-            <component :is="toRaw(loginBox)" />
-          </div>
-          <avatar class="avatar" />
-          <!-- <Motion>
+        <div class="img-login">
+          <!-- <component :is="toRaw(loginBox)" /> -->
+          <div class="login-form">
+            <avatar class="avatar" />
+            <!-- <Motion>
             <h2 class="outline-none">{{ title }}</h2>
           </Motion> -->
 
-          <el-form
-            ref="ruleFormRef"
-            :model="ruleForm"
-            :rules="loginRules"
-            size="large"
-          >
-            <Motion :delay="100">
-              <el-form-item
-                :rules="[
-                  {
-                    required: true,
-                    message: '请输入账号',
-                    trigger: 'blur'
-                  }
-                ]"
-                prop="username"
-              >
-                <el-input
-                  v-model="ruleForm.username"
-                  clearable
-                  placeholder="账号"
-                  :prefix-icon="useRenderIcon(User)"
-                />
-              </el-form-item>
-            </Motion>
+            <el-form
+              ref="ruleFormRef"
+              :model="ruleForm"
+              :rules="loginRules"
+              size="large"
+            >
+              <Motion :delay="100">
+                <el-form-item
+                  :rules="[
+                    {
+                      required: true,
+                      message: '请输入账号',
+                      trigger: 'blur'
+                    }
+                  ]"
+                  prop="username"
+                >
+                  <el-input
+                    v-model="ruleForm.username"
+                    clearable
+                    placeholder="账号"
+                    :prefix-icon="useRenderIcon(User)"
+                  />
+                </el-form-item>
+              </Motion>
 
-            <Motion :delay="150">
-              <el-form-item prop="password">
-                <el-input
-                  v-model="ruleForm.password"
-                  clearable
-                  show-password
-                  placeholder="密码"
-                  :prefix-icon="useRenderIcon(Lock)"
-                />
-              </el-form-item>
-            </Motion>
+              <Motion :delay="150">
+                <el-form-item prop="password">
+                  <el-input
+                    v-model="ruleForm.password"
+                    clearable
+                    show-password
+                    placeholder="密码"
+                    :prefix-icon="useRenderIcon(Lock)"
+                  />
+                </el-form-item>
+              </Motion>
 
-            <Motion :delay="250">
-              <el-button
-                class="w-full mt-4"
-                size="default"
-                type="primary"
-                :loading="loading"
-                @click="onLogin(ruleFormRef)"
-              >
-                登录
-              </el-button>
-            </Motion>
-          </el-form>
+              <Motion :delay="250">
+                <el-button
+                  class="w-full mt-4 login-btn"
+                  size="default"
+                  type="primary"
+                  :loading="loading"
+                  @click="onLogin(ruleFormRef)"
+                >
+                  登录
+                </el-button>
+              </Motion>
+            </el-form>
+          </div>
         </div>
       </div>
     </div>
