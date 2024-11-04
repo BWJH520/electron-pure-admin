@@ -37,19 +37,19 @@
     "vite",
     "esm"
   ],
-  "homepage": "https://github.com/pure-admin/electron-pure-admin",
+  "homepage": "https://github.com/BWJH520/electron-pure-admin",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pure-admin/electron-pure-admin.git"
+    "url": "git+https://github.com/BWJH520/electron-pure-admin.git"
   },
   "bugs": {
-    "url": "https://github.com/pure-admin/electron-pure-admin/issues"
+    "url": "https://github.com/BWJH520/electron-pure-admin/issues"
   },
   "license": "MIT",
   "author": {
-    "name": "xiaoxian521",
-    "email": "pureadmin@163.com",
-    "url": "https://github.com/xiaoxian521"
+    "name": "mgy",
+    "email": "520cfza14@163.com",
+    "url": "https://github.com/BWJH520"
   },
   "dependencies": {
     "@pureadmin/descriptions": "^1.2.1",
